@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Магазин одягу - Товари</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .nav-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        .nav-btns {
+            display: flex;
+            gap: 1rem;
+        }
+        .nav-btn {
+            display: inline-block;
+            padding: 0.6rem 1.4rem;
+            background: #fff;
+            color: #222;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            border: 2px solid #4CAF50;
+            transition: background 0.2s, color 0.2s, border 0.2s, transform 0.15s;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+        }
+        .nav-btn:hover, .nav-btn.active {
+            background: #4CAF50;
+            color: #fff;
+            border-color: #388e3c;
+            transform: translateY(-2px) scale(1.04);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="controls nav-controls">
+                <h1>Магазин одягу</h1>
+                <div class="nav-btns">
+                    <a href="index.html" class="nav-btn">Головна</a>
+                    <a href="products.html" class="nav-btn">Каталог</a>
+                </div>
+            </div>
+        </nav>
+        <div class="controls">
+            <div class="search-sort">
+                <input type="text" id="searchInput" placeholder="Пошук товару...">
+                <select id="sortSelect">
+                    <option value="">Сортувати за...</option>
+                    <option value="brand">Бренд</option>
+                    <option value="type">Тип</option>
+                    <option value="price">Ціна</option>
+                    <option value="size">Розмір</option>
+                </select>
+            </div>
+            <button id="addProductBtn" class="btn">Додати товар</button>
+        </div>
+    </header>
+
+    <main>
+        <div id="productsContainer" class="products-grid"></div>
+    </main>
+
+    <!-- Модальне вікно для додавання/редагування товару -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">Додати новий товар</h2>
+            <form id="productForm">
+                <input type="hidden" id="productId" name="productId">
+                <div class="form-group">
+                    <label for="brand">Бренд:</label>
+                    <input type="text" id="brand" name="brand" required>
+                </div>
+                <div class="form-group">
+                    <label for="type">Тип:</label>
+                    <select id="type" name="type" required>
+                        <option value="футболка">Футболка</option>
+                        <option value="джинси">Джинси</option>
+                        <option value="светр">Светр</option>
+                        <option value="куртка">Куртка</option>
+                        <option value="спідниця">Спідниця</option>
+                        <option value="штани">Штани</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="size">Розмір:</label>
+                    <input type="text" id="size" name="size" required>
+                </div>
+                <div class="form-group">
+                    <label for="color">Колір:</label>
+                    <input type="text" id="color" name="color" required>
+                </div>
+                <div class="form-group">
+                    <label for="price">Ціна:</label>
+                    <input type="number" id="price" name="price" min="0" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="image">URL зображення:</label>
+                    <input type="url" id="image" name="image" required>
+                </div>
+                <button type="submit" class="btn">Зберегти</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Модальне вікно для підтвердження видалення -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <h2>Підтвердження видалення</h2>
+            <p>Ви впевнені, що хочете видалити цей товар?</p>
+            <div class="modal-buttons">
+                <button id="confirmDelete" class="btn btn-danger">Видалити</button>
+                <button id="cancelDelete" class="btn">Скасувати</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
